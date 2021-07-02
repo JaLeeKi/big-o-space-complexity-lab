@@ -257,22 +257,31 @@ The function's may differ with time, but for space, the string going in is the s
 */
 
 class Factorial {
-  constructor(){
-    this.cache = {}
+  constructor() {
+      this.cache = {}
   }
 
   calcFac(num) {
-    if (this.cache.hasOwnProperty(num)) {
-      return this.cache[num]
-    }
-    let answer = num * (num - 1)
-    for (let i = 3; i < num; i++){
-      answer *= 1
-    }
-    this.cache[num] = answer
-    return answer
+      if (this.cache[num]) {
+          console.log('hey you getting paid. Heres some cache')
+          return this.cache[num]
+      } else {
+          let answer = num;
+
+          for (let i = num - 1; i >= 1; i--) {
+              console.log(answer, i)
+              answer *= i
+          }
+
+          this.cache[num] = answer;
+
+          return answer;
+      }
   }
 }
+
+const facInstance = new Factorial();
+facInstance.calcFac(4);
 
 
 /* 
